@@ -1,0 +1,82 @@
+body{
+  background-color: rgb(235, 235, 235);
+}
+.App {
+  text-align: center;
+}
+
+
+.Todo-App {
+  padding-top:20px;
+  display: inline-block;
+  text-align: left;
+}
+
+input {
+  font-size: 20px
+}
+
+ul {
+  padding: 0px;
+}
+
+li {
+  list-style-type: none;
+}
+
+li span.delete-item {
+  visibility: hidden;
+}
+
+span.delete-item a {
+  margin: 10px;
+  text-decoration: none;
+  color:red;
+}
+
+li:hover span.delete-item {
+  visibility: visible;
+}
+
+.error {
+  color:red;
+}
+
+a {
+  padding: 10px;
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+  color: black
+}
+
+.item {
+  border: 2px;
+  margin-top: 10px;
+  background-color: rgb(240, 240, 240);
+}
+
+.links{
+  margin: 10px;
+  width: 100%;
+  
+}
+
+label{
+	position: relative;
+	cursor: pointer;
+	color: #666;
+	font-size: 30px;
+}
+
+.checkbox{
+  margin-right: 30px;
+  font-size: 200%;
+}
+
+.inputForm{
+  width: 100%
+}
+
