@@ -6,21 +6,23 @@ export const TodoForm = (props) => (
       placeholder="Enter task..."
       className="form-control inputForm"
       onChange={props.handleInputChange}
-      value={props.currentTodo}/>
-      <select
-            onChange={props.handleProjectChange}
-            value={props.currentProject}
-            className="form-control">
-            <option>Select project</option>
-            <option>Proj2</option>
-            <option>Proj3</option>
-        </select>
-         <button className="form-control"
-                onClick={props.handleSubmit}>Start</button> 
+      value={props.currentTodo} />
+
+    <select className="form-control"
+      onChange={props.handleProjectChange}>
+      <option disabled={true} selected={true}>Choose project</option>
+      {
+        props.projects.map(el =>
+          <option value={el} key={el}> {el} </option>)
+      }
+    </select>
+    <button className="form-control"
+      onClick={props.handleSubmit}>Start</button>
   </form>)
 
-  TodoForm.propTypes = {
-    currentTodo: React.PropTypes.string.isRequired,
-    handleInputChange: React.PropTypes.func.isRequired,
-    handleSubmit: React.PropTypes.func.isRequired
-  }
+TodoForm.propTypes = {
+  currentTodo: React.PropTypes.string.isRequired,
+  currentProject: React.PropTypes.string.isRequired,
+  handleInputChange: React.PropTypes.func.isRequired,
+  handleSubmit: React.PropTypes.func.isRequired
+}

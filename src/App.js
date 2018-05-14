@@ -10,6 +10,7 @@ class App extends Component {
   state = {
     todos: [],
     currentTodo: '',
+    projects: ["React","React Native", "React/Redux"],
     currentProject: ''
   }
 
@@ -42,12 +43,10 @@ class App extends Component {
     evt.preventDefault()
     const newId = generateId()
     const newTodo = {id: newId, name: this.state.currentTodo, project: this.state.currentProject, isComplete: false}
-    const updatedTodos = addTodo(this.state.todos, newTodo)
-    console.log(this.state.todos);    
+    const updatedTodos = addTodo(this.state.todos, newTodo) 
     this.setState({
       todos: updatedTodos,
       currentTodo: '',
-      currentProject: '',
       errorMessage: ''
     })
     
@@ -56,7 +55,7 @@ class App extends Component {
   handleEmptySubmit = (evt) => {
     evt.preventDefault()
     this.setState({
-      errorMessage: 'Please add task name'
+      errorMessage: 'Please add task name & project'
     })
   }
 
@@ -67,13 +66,14 @@ class App extends Component {
   }
 
   handleProjectChange = (evt) => {
+    
     this.setState({
       currentProject: evt.target.value
     })
   }
 
   render() {
-    const submitHandler = this.state.currentTodo ? this.handleSubmit : this.handleEmptySubmit
+    const submitHandler = this.state.currentTodo && this.state.currentProject ? this.handleSubmit : this.handleEmptySubmit
     const displayTodos = filterTodos(this.state.todos, this.context.route)
     return (
       <div className="App">
@@ -84,6 +84,7 @@ class App extends Component {
             handleProjectChange={this.handleProjectChange}
             currentTodo={this.state.currentTodo}
             currentProject={this.state.currentProject}
+            projects={this.state.projects}
             handleSubmit={submitHandler}/>
           <TodoList handleToggle={this.handleToggle}
             todos={displayTodos}
