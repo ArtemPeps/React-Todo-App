@@ -9,7 +9,8 @@ import {pipe, partial} from './lib/utils'
 class App extends Component {
   state = {
     todos: [],
-    currentTodo: ''
+    currentTodo: '',
+    currentProject: ''
   }
 
   static contextTypes = {
@@ -40,19 +41,22 @@ class App extends Component {
   handleSubmit = (evt) => {
     evt.preventDefault()
     const newId = generateId()
-    const newTodo = {id: newId, name: this.state.currentTodo, isComplete: false}
+    const newTodo = {id: newId, name: this.state.currentTodo, project: this.state.currentProject, isComplete: false}
     const updatedTodos = addTodo(this.state.todos, newTodo)
+    console.log(this.state.todos);    
     this.setState({
       todos: updatedTodos,
       currentTodo: '',
+      currentProject: '',
       errorMessage: ''
     })
+    
   }
 
   handleEmptySubmit = (evt) => {
     evt.preventDefault()
     this.setState({
-      errorMessage: 'Please add todo name'
+      errorMessage: 'Please add task name'
     })
   }
 
@@ -62,16 +66,24 @@ class App extends Component {
     })
   }
 
+  handleProjectChange = (evt) => {
+    this.setState({
+      currentProject: evt.target.value
+    })
+  }
+
   render() {
     const submitHandler = this.state.currentTodo ? this.handleSubmit : this.handleEmptySubmit
     const displayTodos = filterTodos(this.state.todos, this.context.route)
     return (
       <div className="App">
-        <h1>React Todo App</h1>
+        
         <div className="Todo-App">
           {this.state.errorMessage && <span className='error'>{this.state.errorMessage}</span>}
           <TodoForm handleInputChange={this.handleInputChange}
+            handleProjectChange={this.handleProjectChange}
             currentTodo={this.state.currentTodo}
+            currentProject={this.state.currentProject}
             handleSubmit={submitHandler}/>
           <TodoList handleToggle={this.handleToggle}
             todos={displayTodos}

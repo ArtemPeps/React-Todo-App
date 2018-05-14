@@ -1,18 +1,28 @@
 import React from 'react'
 import {TodoItem} from './TodoItem'
 
+
 export const TodoList = (props) => {
+
   return (
-    <div className="Todo-List">
-      <ul>
-        {props.todos.map(todo => 
-        <TodoItem handleToggle={props.handleToggle}
-                  key={todo.id} 
-                  {...todo}
-                  handleRemove={props.handleRemove} 
-        />)}
-      </ul>
-    </div>
+    <table className="table table-sm">
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Task</th>
+          <th>Project</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+      {props.todos.map(todo => 
+         <TodoItem handleToggle={props.handleToggle}
+                   key={todo.id} 
+                   {...todo}
+                   handleRemove={props.handleRemove} 
+         />)}
+      </tbody>
+    </table>
   )
 }
 
