@@ -3,14 +3,16 @@ import React from 'react'
 export const TodoForm = (props) => (
   <form onSubmit={props.handleSubmit} className="form-inline">
     <input type="text"
+      autoFocus={true}
       placeholder="Enter task..."
       className="form-control inputForm"
       onChange={props.handleInputChange}
       value={props.currentTodo} />
 
     <select className="form-control"
-      onChange={props.handleProjectChange}>
-      <option disabled={true} selected={true}>Choose project</option>
+      onChange={props.handleProjectChange}
+      defaultValue={"val"}>
+      <option disabled={true} value={"val"} >Choose project</option>
       {
         props.projects.map(el =>
           <option value={el} key={el}> {el} </option>)

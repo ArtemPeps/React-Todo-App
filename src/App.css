@@ -10,6 +10,7 @@ body{
   padding-top:20px;
   display: inline-block;
   text-align: left;
+  width: 50%
 }
 
 input {
@@ -61,7 +62,7 @@ a:hover {
 .links{
   margin: 10px;
   width: 100%;
-  
+  text-align: center
 }
 
 label{
@@ -74,9 +75,21 @@ label{
 .checkbox{
   margin-right: 30px;
   font-size: 200%;
+  width: 50px;
+  float: left;
 }
 
 .inputForm{
   width: 100%
+}
+.checkItem{
+  width: 50px;
+}
+
+.projectItem{
+  width: 150px;
+}
+.todoItem{
+  width: 300px;
 }
 
