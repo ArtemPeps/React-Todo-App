@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const TodoForm = (props) => (
-  <form onSubmit={props.handleSubmit} className="form-inline">
+  <form  className="form-inline">
     <input type="text"
       autoFocus={true}
       placeholder="Enter task..."
@@ -18,8 +18,11 @@ export const TodoForm = (props) => (
           <option value={el} key={el}> {el} </option>)
       }
     </select>
+    <div className="form-control">{props.timerPad}</div>
     <button className="form-control"
-      onClick={props.handleSubmit}>Start</button>
+      onClick={props.startTimer}>Start</button>
+    <button className="form-control"
+      onClick={props.handleSubmit }>Stop</button>
   </form>)
 
 TodoForm.propTypes = {

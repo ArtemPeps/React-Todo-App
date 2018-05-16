@@ -12,7 +12,7 @@ export class Link extends Component {
   }
 
   render() {
-    const activeClass = this.context.route === this.props.to ? 'btn-success active' : 'btn-default'
+    const activeClass = this.context.route === this.props.to ? 'btn btn-default active' : 'btn btn-default'
     return <a href="#" className={activeClass} onClick={this.handleClick}>{this.props.children}</a>
   }
 }

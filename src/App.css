@@ -85,11 +85,17 @@ label{
 .checkItem{
   width: 50px;
 }
-
 .projectItem{
   width: 150px;
 }
 .todoItem{
   width: 300px;
 }
+.deleteItem{
+  width: 100px;
+}
 
+.continueButton{
+  background-color: transparent;
+  border: none
+}

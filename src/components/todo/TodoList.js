@@ -3,7 +3,7 @@ import {TodoItem} from './TodoItem'
 
 
 export const TodoList = (props) => {
-
+ 
   return (
     <table className="table table-md">
       <thead>
@@ -11,6 +11,8 @@ export const TodoList = (props) => {
           <th>Status</th>
           <th>Task</th>
           <th>Project</th>
+          <th>Time spent</th>
+          <th>Time range</th>
           <th>Edit</th>
         </tr>
       </thead>
