@@ -1,11 +1,11 @@
 import React from 'react'
 
 export const TodoForm = (props) => (
-  <form  className="form-inline">
+  <form  className="form-inline mainForm">
     <input type="text"
       autoFocus={true}
       placeholder="Enter task..."
-      className="form-control inputForm"
+      className="inputForm form-control"
       onChange={props.handleInputChange}
       value={props.currentTodo} />
 
@@ -19,10 +19,7 @@ export const TodoForm = (props) => (
       }
     </select>
     <div className="form-control pad">{props.timerPad}</div>
-{/*     <button className="form-control"
-      onClick={props.startTimer}>Start</button>
-    <button className="form-control"
-      onClick={props.handleSubmit }>Stop</button> */}
+
       	<button className={props.toggled ? "btn-success form-control active" : "btn-danger form-control active"} onClick={props.buttonToggle}>
 				{props.toggled ? "Start" : "Stop"}
 			</button>
@@ -32,5 +29,4 @@ TodoForm.propTypes = {
   currentTodo: React.PropTypes.string.isRequired,
   currentProject: React.PropTypes.string.isRequired,
   handleInputChange: React.PropTypes.func.isRequired,
-  /* handleSubmit: React.PropTypes.func.isRequired */
 }

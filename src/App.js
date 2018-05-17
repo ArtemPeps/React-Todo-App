@@ -47,13 +47,7 @@ class App extends Component {
     this.setState({ todos: updatedTodos })
   }
 
-  handleSubmit = (evt) => {
-    /* evt.preventDefault() */
-    const stopDate = new Date().toLocaleString('eu', {
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric'
-      })
+  handleSubmit = () => {
     const newId = generateId()
     const newTodo = {
       id: newId,
@@ -71,13 +65,11 @@ class App extends Component {
       currentTodo: '',
       errorMessage: '',
       timer: null,
-      time: 0,
-      stopDate: stopDate
+      time: 1
     })
   }
 
-  handleEmptySubmit = (evt) => {
-    evt.preventDefault()
+  handleEmptySubmit = () => {
     this.setState({
       errorMessage: 'Please add task name & project'
     })
@@ -112,14 +104,17 @@ class App extends Component {
     return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
   }
 
-
-  startTimer = (evt) => {
-  /*   evt.preventDefault(); */
-    const startDate = new Date().toLocaleString('eu', {
+  getDate = () => {
+     const date = new Date().toLocaleString('eu', {
       hour: 'numeric',
       minute: 'numeric',
       second: 'numeric'
     })
+    return date;
+  }
+
+
+  startTimer = (evt) => {
     this.setState({
       timer: setInterval(() => {
         const seconds = this.timerPad(this.timerFilter(this.state.time).seconds, 2);
@@ -128,41 +123,47 @@ class App extends Component {
         const pad = hours + ":" + minutes + ":" + seconds;
         this.setState({
           time: this.state.time + 1,
-          pad: pad
+          pad: pad,
+          stopDate: this.getDate()
         });
       }, 1000),
-      startDate: startDate
+      startDate: this.getDate()
     })
   }
 
   buttonToggle = (evt) => {
     evt.preventDefault();
-    if(this.state.toggled === true){
-      this.startTimer();
+    if(this.state.toggled){
+      if(this.state.currentTodo && this.state.currentProject){
+        this.startTimer();
+        this.setState(prevState => ({
+          toggled: !prevState.toggled
+        }));
+      }
+      else {
+        this.handleEmptySubmit();
+      }
     }
-    if(this.state.toggled === !true){
+    if(!this.state.toggled){
       this.handleSubmit();
+      this.setState(prevState => ({
+        toggled: !prevState.toggled
+      }));
     }
-    this.setState(prevState => ({
-       		toggled: !prevState.toggled
-       	}));
   }
-
-
   render() {
-    const submitHandler = this.state.currentTodo && this.state.currentProject ? this.handleSubmit : this.handleEmptySubmit
     const displayTodos = filterTodos(this.state.todos, this.context.route)
     
     return (
       <div className="App">
         <div className="Todo-App">
           {this.state.errorMessage && <span className='error'>{this.state.errorMessage}</span>}
+          <h1>React tracking app</h1 >
           <TodoForm handleInputChange={this.handleInputChange}
             handleProjectChange={this.handleProjectChange}
             currentTodo={this.state.currentTodo}
             currentProject={this.state.currentProject}
             projects={this.state.projects}
-            handleSubmit={submitHandler}
             timerPad={this.state.pad}
             startTimer={this.startTimer}
             buttonToggle={this.buttonToggle}

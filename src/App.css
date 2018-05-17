@@ -10,11 +10,14 @@ body{
   padding-top:20px;
   display: inline-block;
   text-align: left;
-  width: 50%
+  width: 60%
 }
+
+
 
 .inputForm {
 margin-right: 3px;
+width: 500px;
 }
 
 .pad {
