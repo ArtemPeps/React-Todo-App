@@ -14,7 +14,7 @@ export const TodoItem = (props) => {
       <td className="item todoItem">{props.name} </td>
       <td className="item projectItem">{props.project}</td>
       <td className="item timeItem">{props.stopTime}</td>
-      <td className="item timeItem">{props.stopDate+" - "+props.startDate}</td>
+      <td className="item rangeItem">{props.stopDate+" - "+props.startDate}</td>
       <td className='item deleteItem'> 
         <button className="continueButton" onClick={handleRemove} >
           <i className="fas fa-times"></i>

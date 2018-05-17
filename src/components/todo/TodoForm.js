@@ -9,20 +9,23 @@ export const TodoForm = (props) => (
       onChange={props.handleInputChange}
       value={props.currentTodo} />
 
-    <select className="form-control"
+    <select className="form-control selectForm"
       onChange={props.handleProjectChange}
       defaultValue={"val"}>
-      <option disabled={true} value={"val"} >Choose project</option>
+      <option disabled={true} value={"val"}>Choose project</option>
       {
         props.projects.map(el =>
           <option value={el} key={el}> {el} </option>)
       }
     </select>
-    <div className="form-control">{props.timerPad}</div>
-    <button className="form-control"
+    <div className="form-control pad">{props.timerPad}</div>
+{/*     <button className="form-control"
       onClick={props.startTimer}>Start</button>
     <button className="form-control"
-      onClick={props.handleSubmit }>Stop</button>
+      onClick={props.handleSubmit }>Stop</button> */}
+      	<button className={props.toggled ? "btn-success form-control active" : "btn-danger form-control active"} onClick={props.buttonToggle}>
+				{props.toggled ? "Start" : "Stop"}
+			</button>
   </form>)
 
 TodoForm.propTypes = {

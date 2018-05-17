@@ -13,12 +13,13 @@ class App extends Component {
     currentTodo: '',
     projects: ["React", "React Native", "React/Redux"],
     currentProject: '',
-    time: 0,
+    time: 1,
     timer: '',
     pad: '00:00:00',
     stopTime: '',
     startDate: '',
     stopDate: '',
+    toggled: true
   }
 
   static contextTypes = {
@@ -47,7 +48,7 @@ class App extends Component {
   }
 
   handleSubmit = (evt) => {
-    evt.preventDefault()
+    /* evt.preventDefault() */
     const stopDate = new Date().toLocaleString('eu', {
         hour: 'numeric',
         minute: 'numeric',
@@ -113,8 +114,7 @@ class App extends Component {
 
 
   startTimer = (evt) => {
-    evt.preventDefault();
-    this.handleEmptySubmit(evt)
+  /*   evt.preventDefault(); */
     const startDate = new Date().toLocaleString('eu', {
       hour: 'numeric',
       minute: 'numeric',
@@ -135,6 +135,19 @@ class App extends Component {
     })
   }
 
+  buttonToggle = (evt) => {
+    evt.preventDefault();
+    if(this.state.toggled === true){
+      this.startTimer();
+    }
+    if(this.state.toggled === !true){
+      this.handleSubmit();
+    }
+    this.setState(prevState => ({
+       		toggled: !prevState.toggled
+       	}));
+  }
+
 
   render() {
     const submitHandler = this.state.currentTodo && this.state.currentProject ? this.handleSubmit : this.handleEmptySubmit
@@ -151,7 +164,9 @@ class App extends Component {
             projects={this.state.projects}
             handleSubmit={submitHandler}
             timerPad={this.state.pad}
-            startTimer={this.startTimer} />
+            startTimer={this.startTimer}
+            buttonToggle={this.buttonToggle}
+            toggled={this.state.toggled} />
           <TodoList handleToggle={this.handleToggle}
             todos={displayTodos}
             handleRemove={this.handleRemove}
