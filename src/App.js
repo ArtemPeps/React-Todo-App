@@ -13,7 +13,7 @@ class App extends Component {
     currentTodo: '',
     projects: ["React", "React Native", "React/Redux"],
     currentProject: '',
-    time: 1,
+    time: 0,
     timer: '',
     pad: '00:00:00',
     stopTime: '',
@@ -64,8 +64,9 @@ class App extends Component {
       todos: updatedTodos,
       currentTodo: '',
       errorMessage: '',
+      pad:'00:00:00',
       timer: null,
-      time: 1
+      time: 0
     })
   }
 
@@ -117,7 +118,7 @@ class App extends Component {
   startTimer = (evt) => {
     this.setState({
       timer: setInterval(() => {
-        const seconds = this.timerPad(this.timerFilter(this.state.time).seconds, 2);
+        const seconds = this.timerPad(this.timerFilter(this.state.time+1).seconds, 2);
         const minutes = this.timerPad(this.timerFilter(this.state.time).minutes, 2);
         const hours = this.timerPad(this.timerFilter(this.state.time).hours, 2);
         const pad = hours + ":" + minutes + ":" + seconds;
@@ -147,13 +148,13 @@ class App extends Component {
     if(!this.state.toggled){
       this.handleSubmit();
       this.setState(prevState => ({
-        toggled: !prevState.toggled
+        toggled: !prevState.toggled,
+        
       }));
     }
   }
   render() {
     const displayTodos = filterTodos(this.state.todos, this.context.route)
-    
     return (
       <div className="App">
         <div className="Todo-App">
