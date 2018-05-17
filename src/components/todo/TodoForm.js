@@ -32,5 +32,5 @@ TodoForm.propTypes = {
   currentTodo: React.PropTypes.string.isRequired,
   currentProject: React.PropTypes.string.isRequired,
   handleInputChange: React.PropTypes.func.isRequired,
-  handleSubmit: React.PropTypes.func.isRequired
+  /* handleSubmit: React.PropTypes.func.isRequired */
 }
