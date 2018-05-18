@@ -1,16 +1,16 @@
 import React from 'react'
 
 export const TodoForm = (props) => (
-  <form  className="form-inline mainForm">
+  <form className="form-inline mainForm form-group">
     <input type="text"
-      autoFocus={true}
+      autoFocus={false}
       placeholder="Enter task..."
-      className="inputForm form-control"
+      className="inputForm form-control-lg"
       onChange={props.handleInputChange}
       value={props.currentTodo} />
 
-    <select className="form-control selectForm"
-      onChange={props.handleProjectChange}
+    <select className="custom-select form-control-lg"
+    onChange={props.handleProjectChange}
       defaultValue={"val"}>
       <option disabled={true} value={"val"}>Choose project</option>
       {
@@ -18,11 +18,24 @@ export const TodoForm = (props) => (
           <option value={el} key={el}> {el} </option>)
       }
     </select>
-    <div className="form-control pad">{props.timerPad}</div>
+  
+    {/* <select className="form-control-lg selectForm"
+      onChange={props.handleProjectChange}
+      defaultValue={"val"}>
+      <option disabled={true} value={"val"}>Choose project</option>
+      {
+        props.projects.map(el =>
+          <option value={el} key={el}> {el} </option>)
+      }
+    </select> */}
+    <div className="form-control-lg pad">{props.timerPad}</div>
 
-      	<button className={props.toggled ? "btn-success form-control active" : "btn-danger form-control active"} onClick={props.buttonToggle}>
-				{props.toggled ? "Start" : "Stop"}
-			</button>
+    <label type="button" className={props.toggled ?
+      "btn-success form-control-lg active" :
+      "btn-danger form-control-lg active"}
+      onClick={props.buttonToggle}>
+      {props.toggled ? "Start" : "Stop"}
+    </label>
   </form>)
 
 TodoForm.propTypes = {

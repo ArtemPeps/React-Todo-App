@@ -5,7 +5,7 @@ import {TodoItem} from './TodoItem'
 export const TodoList = (props) => {
  
   return (
-    <table className="table table-md">
+    <table className="table table-hover table-md">
       <thead>
         <tr>
           <th>Status</th>

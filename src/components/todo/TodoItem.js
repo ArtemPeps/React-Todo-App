@@ -6,16 +6,22 @@ export const TodoItem = (props) => {
   const handleRemove = partial(props.handleRemove, props.id)
   return (
     <tr>
-      <td className="checkItem">
-        <input type="checkbox"
-          className="checkbox form-control"
-          onChange={handleToggle}
-          checked={props.isComplete} /> </td>
+      <td className="checkbox"> <div className="form-group">
+        <div className="custom-control custom-checkbox">
+          <input type="checkbox"
+            className="custom-control-input"
+            id="customCheck1"
+            onChange={handleToggle}
+            checked={props.isComplete} />
+          <label className="custom-control-label" htmlFor="customCheck1"></label>
+        </div>
+      </div>
+      </td>
       <td className="item todoItem">{props.name} </td>
       <td className="item projectItem">{props.project}</td>
       <td className="item timeItem">{props.stopTime}</td>
-      <td className="item rangeItem">{props.startDate+" - "+props.stopDate}</td>
-      <td className='item deleteItem'> 
+      <td className="item rangeItem">{props.startDate + " - " + props.stopDate}</td>
+      <td className='item deleteItem'>
         <button className="continueButton" onClick={handleRemove} >
           <i className="fas fa-times"></i>
         </button>

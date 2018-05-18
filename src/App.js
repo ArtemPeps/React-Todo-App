@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import { TodoForm, TodoList, Footer } from './components/todo'
+import { TodoForm, TodoList, Footer} from './components/todo'
 import { addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo, filterTodos, removeCompleted } from './lib/todoHelpers'
 import { pipe, partial } from './lib/utils'
-
+import { Header } from './components/todo/Header'
 
 
 
@@ -159,7 +159,7 @@ class App extends Component {
       <div className="App">
         <div className="Todo-App">
           {this.state.errorMessage && <span className='error'>{this.state.errorMessage}</span>}
-          <h1>React tracking app</h1 >
+          <Header />
           <TodoForm handleInputChange={this.handleInputChange}
             handleProjectChange={this.handleProjectChange}
             currentTodo={this.state.currentTodo}
